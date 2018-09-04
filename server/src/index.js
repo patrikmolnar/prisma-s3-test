@@ -25,6 +25,10 @@ const resolvers = {
     async renameFile(parent, { id, filename }, ctx, info) {
       return ctx.db.mutation.updateFile({ data: { filename }, where: { id } }, info)
     },
+
+    async updateId(parent, { id, refId }, ctx, info) {
+      return ctx.db.mutation.updateFile({ data: { filename }, where: { id } }, info)
+    },
   
     async deleteFile(parent, { id }, ctx, info) {
       return await ctx.db.mutation.deleteFile({ where: { id } }, info)
