@@ -1,0 +1,11 @@
+type File {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  filename: String!
+  mimetype: String!
+  encoding: String!
+  url: String! @unique
+  govId: String
+  refId: String @unique
+}

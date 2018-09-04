@@ -1,0 +1,533 @@
+# source: http://enrol-Publi-15DTFMVR8KX05-1492607005.ap-northeast-1.elb.amazonaws.com/prisma-enroll/staging
+# timestamp: Tue Sep 04 2018 12:00:26 GMT+0700 (+07)
+
+type AggregateFile {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+scalar DateTime
+
+type File implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  filename: String!
+  mimetype: String!
+  encoding: String!
+  url: String!
+  govId: String
+  refId: String
+}
+
+"""A connection to a list of items."""
+type FileConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FileEdge]!
+  aggregate: AggregateFile!
+}
+
+input FileCreateInput {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+  url: String!
+  govId: String
+  refId: String
+}
+
+"""An edge in a connection."""
+type FileEdge {
+  """The item at the end of the edge."""
+  node: File!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FileOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  filename_ASC
+  filename_DESC
+  mimetype_ASC
+  mimetype_DESC
+  encoding_ASC
+  encoding_DESC
+  url_ASC
+  url_DESC
+  govId_ASC
+  govId_DESC
+  refId_ASC
+  refId_DESC
+}
+
+type FilePreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  filename: String!
+  mimetype: String!
+  encoding: String!
+  url: String!
+  govId: String
+  refId: String
+}
+
+type FileSubscriptionPayload {
+  mutation: MutationType!
+  node: File
+  updatedFields: [String!]
+  previousValues: FilePreviousValues
+}
+
+input FileSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FileSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FileSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FileSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FileWhereInput
+}
+
+input FileUpdateInput {
+  filename: String
+  mimetype: String
+  encoding: String
+  url: String
+  govId: String
+  refId: String
+}
+
+input FileWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FileWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FileWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FileWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  filename: String
+
+  """All values that are not equal to given value."""
+  filename_not: String
+
+  """All values that are contained in given list."""
+  filename_in: [String!]
+
+  """All values that are not contained in given list."""
+  filename_not_in: [String!]
+
+  """All values less than the given value."""
+  filename_lt: String
+
+  """All values less than or equal the given value."""
+  filename_lte: String
+
+  """All values greater than the given value."""
+  filename_gt: String
+
+  """All values greater than or equal the given value."""
+  filename_gte: String
+
+  """All values containing the given string."""
+  filename_contains: String
+
+  """All values not containing the given string."""
+  filename_not_contains: String
+
+  """All values starting with the given string."""
+  filename_starts_with: String
+
+  """All values not starting with the given string."""
+  filename_not_starts_with: String
+
+  """All values ending with the given string."""
+  filename_ends_with: String
+
+  """All values not ending with the given string."""
+  filename_not_ends_with: String
+  mimetype: String
+
+  """All values that are not equal to given value."""
+  mimetype_not: String
+
+  """All values that are contained in given list."""
+  mimetype_in: [String!]
+
+  """All values that are not contained in given list."""
+  mimetype_not_in: [String!]
+
+  """All values less than the given value."""
+  mimetype_lt: String
+
+  """All values less than or equal the given value."""
+  mimetype_lte: String
+
+  """All values greater than the given value."""
+  mimetype_gt: String
+
+  """All values greater than or equal the given value."""
+  mimetype_gte: String
+
+  """All values containing the given string."""
+  mimetype_contains: String
+
+  """All values not containing the given string."""
+  mimetype_not_contains: String
+
+  """All values starting with the given string."""
+  mimetype_starts_with: String
+
+  """All values not starting with the given string."""
+  mimetype_not_starts_with: String
+
+  """All values ending with the given string."""
+  mimetype_ends_with: String
+
+  """All values not ending with the given string."""
+  mimetype_not_ends_with: String
+  encoding: String
+
+  """All values that are not equal to given value."""
+  encoding_not: String
+
+  """All values that are contained in given list."""
+  encoding_in: [String!]
+
+  """All values that are not contained in given list."""
+  encoding_not_in: [String!]
+
+  """All values less than the given value."""
+  encoding_lt: String
+
+  """All values less than or equal the given value."""
+  encoding_lte: String
+
+  """All values greater than the given value."""
+  encoding_gt: String
+
+  """All values greater than or equal the given value."""
+  encoding_gte: String
+
+  """All values containing the given string."""
+  encoding_contains: String
+
+  """All values not containing the given string."""
+  encoding_not_contains: String
+
+  """All values starting with the given string."""
+  encoding_starts_with: String
+
+  """All values not starting with the given string."""
+  encoding_not_starts_with: String
+
+  """All values ending with the given string."""
+  encoding_ends_with: String
+
+  """All values not ending with the given string."""
+  encoding_not_ends_with: String
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  govId: String
+
+  """All values that are not equal to given value."""
+  govId_not: String
+
+  """All values that are contained in given list."""
+  govId_in: [String!]
+
+  """All values that are not contained in given list."""
+  govId_not_in: [String!]
+
+  """All values less than the given value."""
+  govId_lt: String
+
+  """All values less than or equal the given value."""
+  govId_lte: String
+
+  """All values greater than the given value."""
+  govId_gt: String
+
+  """All values greater than or equal the given value."""
+  govId_gte: String
+
+  """All values containing the given string."""
+  govId_contains: String
+
+  """All values not containing the given string."""
+  govId_not_contains: String
+
+  """All values starting with the given string."""
+  govId_starts_with: String
+
+  """All values not starting with the given string."""
+  govId_not_starts_with: String
+
+  """All values ending with the given string."""
+  govId_ends_with: String
+
+  """All values not ending with the given string."""
+  govId_not_ends_with: String
+  refId: String
+
+  """All values that are not equal to given value."""
+  refId_not: String
+
+  """All values that are contained in given list."""
+  refId_in: [String!]
+
+  """All values that are not contained in given list."""
+  refId_not_in: [String!]
+
+  """All values less than the given value."""
+  refId_lt: String
+
+  """All values less than or equal the given value."""
+  refId_lte: String
+
+  """All values greater than the given value."""
+  refId_gt: String
+
+  """All values greater than or equal the given value."""
+  refId_gte: String
+
+  """All values containing the given string."""
+  refId_contains: String
+
+  """All values not containing the given string."""
+  refId_not_contains: String
+
+  """All values starting with the given string."""
+  refId_starts_with: String
+
+  """All values not starting with the given string."""
+  refId_not_starts_with: String
+
+  """All values ending with the given string."""
+  refId_ends_with: String
+
+  """All values not ending with the given string."""
+  refId_not_ends_with: String
+}
+
+input FileWhereUniqueInput {
+  id: ID
+  url: String
+  refId: String
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createFile(data: FileCreateInput!): File!
+  updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
+  deleteFile(where: FileWhereUniqueInput!): File
+  upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
+  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
+  deleteManyFiles(where: FileWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
+  file(where: FileWhereUniqueInput!): File
+  filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
+}
